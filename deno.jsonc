@@ -1,0 +1,18 @@
+{
+    "tasks": {
+        "dev": "deno run -A --watch main.ts"
+    },
+    "compilerOptions": {
+        "lib": [
+            "deno.window",
+            "webworker",
+            "esnext"
+        ]
+    },
+    "fmt": {
+        "lineWidth": 120,
+        "indentWidth": 4,
+        "semiColons": false,
+        "singleQuote": true
+    }
+}
