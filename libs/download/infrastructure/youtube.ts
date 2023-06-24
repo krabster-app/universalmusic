@@ -1,9 +1,21 @@
-// INCOMPLETE
-
 import { DOMParser } from 'https://deno.land/x/deno_dom/deno-dom-wasm.ts'
 import { createFakeHeaders } from '../../shared/http/fake-headers.ts'
 
 const HEADERS = createFakeHeaders({ origin: 'https://youtube.com', host: 'youtube.com' })
+
+const isValidVideoTitle = (videoName: string, query: string) => {
+    const keywords = ['cover', 'remix', 'playlist']
+    const check = keywords.every((keyword) => {
+        if (
+            videoName.toLowerCase().includes(keyword) && !query.toLowerCase().includes(keyword) ||
+            !videoName.toLowerCase().includes(keyword) && query.toLowerCase().includes(keyword)
+        ) {
+            return false
+        }
+        return true
+    })
+    return check
+}
 
 export const searchVideos = async (query: string) => {
     const url = new URL('https://youtube.com/results')
@@ -48,29 +60,44 @@ export const searchVideos = async (query: string) => {
         .contents[0]
         .itemSectionRenderer
         .contents
-        .map((content) => {
+        .map((content: any) => {
             const videoRenderer = content.videoRenderer
 
             if (!videoRenderer) {
                 return null
             }
 
-            const videoId = videoRenderer.videoId
-            const title = videoRenderer.title.runs[0].text
-            const lengthText = videoRenderer.lengthText?.simpleText
-            const viewCountText = videoRenderer.viewCountText?.simpleText
-            const thumbnail = videoRenderer.thumbnail.thumbnails[0]
+            const videoId = videoRenderer.videoId as string
+            const title = videoRenderer.title.runs[0].text as string
+            const length = (videoRenderer.lengthText?.simpleText as string).split(':').reduce((acc, v, i, a) => {
+                return acc + parseInt(v) * Math.pow(60, a.length - i - 1)
+            }, 0) // 0:30 / 2:55 / 1:45:33
+
+            if (length > 7200) return null
+
+            const viewCount = parseInt(
+                (videoRenderer.viewCountText?.simpleText as string).match(/((\d\s*)+)/)?.[0]
+                    ?.replaceAll(/\s/g, '') ?? '0',
+            )
+
+            if (!isValidVideoTitle(title, query)) {
+                return null
+            }
 
             return {
                 videoId,
                 title,
-                lengthText,
-                viewCountText,
-                thumbnail,
+                length,
+                viewCount,
             }
-        })
+        }).filter(Boolean) as {
+            videoId: string
+            title: string
+            length: number
+            viewCount: number
+        }[]
 
-    return videos
+    return videos.sort((a, b) => b.viewCount - a.viewCount).at(0)
 }
 
 if (import.meta.main) {

@@ -1,6 +1,7 @@
 import { MBID } from '../providers/musicbrainz/types.ts'
 
 export type TrackInfo = {
+    id: MBID
     title: string // track title
     length: number // length in ms
     disambiguation: string // "clean"

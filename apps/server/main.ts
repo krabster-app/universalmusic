@@ -1,5 +1,6 @@
 import { Application, Router } from 'oak'
 import { searchService } from '$services/search.ts'
+import { playService } from './services/play.ts'
 
 const app = new Application()
 
@@ -26,6 +27,9 @@ router
     })
     .get('/search', async (context) => {
         context.response.body = await searchService(context)
+    })
+    .post('/play', async (context) => {
+        context.response.body = await playService(context)
     })
 
 app.use(router.routes())

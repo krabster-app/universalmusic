@@ -7,6 +7,7 @@ export const musicBrainzTransformer = (mbRecording: MusicBrainzRecording): Track
     const release = mbRecording.releases?.find((v) => v.status === 'Official') ?? mbRecording.releases?.at(0)
 
     return {
+        id: mbRecording.id,
         title: mbRecording.title, // track title
         length: mbRecording.length, // length in ms
         disambiguation: mbRecording.disambiguation, // "clean"

@@ -3,7 +3,11 @@
     "$apps/": "./apps/",
     "$libs/": "./libs/",
     "$services/": "./apps/server/services/",
+    "$worker/": "./apps/download-worker/",
+    "$utils/": "./libs/utils/",
 
-    "oak": "https://deno.land/x/oak@v12.5.0/mod.ts"
+    "oak": "https://deno.land/x/oak@v12.5.0/mod.ts",
+    "ytdl": "https://deno.land/x/ytdl_core@v0.1.2/mod.ts",
+    "nanoid": "https://deno.land/x/nanoid@v3.0.0/mod.ts"
   }
 }
