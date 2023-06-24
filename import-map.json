@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "$apps/": "./apps/",
+    "$libs/": "./libs/",
+    "$services/": "./apps/server/services/",
+
+    "oak": "https://deno.land/x/oak@v12.5.0/mod.ts"
+  }
+}

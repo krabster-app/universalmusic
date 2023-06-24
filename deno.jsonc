@@ -3,12 +3,9 @@
         "dev": "deno run -A --watch main.ts"
     },
     "compilerOptions": {
-        "lib": [
-            "deno.window",
-            "webworker",
-            "esnext"
-        ]
+        "lib": ["deno.window", "webworker", "esnext"]
     },
+    "importMap": "./import-map.json",
     "fmt": {
         "lineWidth": 120,
         "indentWidth": 4,
