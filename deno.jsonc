@@ -1,6 +1,8 @@
 {
     "tasks": {
-        "dev": "deno run -A --watch main.ts"
+        "dev": "deno run -A --watch main.ts",
+        "edgedb:start": "edgedb instance start -I universalmusic",
+        "edgedb:stop": "edgedb instance stop -I universalmusic"
     },
     "compilerOptions": {
         "lib": ["deno.window", "webworker", "esnext"]

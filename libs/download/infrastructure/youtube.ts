@@ -4,7 +4,7 @@ import { createFakeHeaders } from '../../shared/http/fake-headers.ts'
 const HEADERS = createFakeHeaders({ origin: 'https://youtube.com', host: 'youtube.com' })
 
 const isValidVideoTitle = (videoName: string, query: string) => {
-    const keywords = ['cover', 'remix', 'playlist']
+    const keywords = ['cover', 'remix', 'playlist', 'double', 'dual']
     const check = keywords.every((keyword) => {
         if (
             videoName.toLowerCase().includes(keyword) && !query.toLowerCase().includes(keyword) ||
@@ -97,7 +97,7 @@ export const searchVideos = async (query: string) => {
             viewCount: number
         }[]
 
-    return videos.sort((a, b) => b.viewCount - a.viewCount).at(0)
+    return videos.at(0)
 }
 
 if (import.meta.main) {
