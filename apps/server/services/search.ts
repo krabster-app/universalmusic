@@ -14,5 +14,6 @@ export const searchService = async (context: RouterContext<'/search'>) => {
     console.log(data)
     const tracks = data.recordings.map(musicBrainzTransformer)
     tracks.forEach((v) => tracksCache.insertUpdate(v.id, v))
+
     return tracks
 }

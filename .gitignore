@@ -1,1 +1,3 @@
 *.webm
+libs/edgeql/db
+.DS_Store

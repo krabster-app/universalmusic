@@ -9,6 +9,8 @@
     "oak": "https://deno.land/x/oak@v12.5.0/mod.ts",
     "ytdl": "https://deno.land/x/ytdl_core@v0.1.2/mod.ts",
     "nanoid": "https://deno.land/x/nanoid@v3.0.0/mod.ts",
-    "s3": "https://deno.land/x/s3_lite_client@0.6.0/mod.ts"
+    "s3": "https://deno.land/x/s3_lite_client@0.6.0/mod.ts",
+    "edgedb": "https://deno.land/x/edgedb@v1.3.0/mod.ts",
+    "edgedb/": "https://deno.land/x/edgedb@v1.3.0/"
   }
 }

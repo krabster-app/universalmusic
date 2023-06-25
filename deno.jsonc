@@ -2,7 +2,10 @@
     "tasks": {
         "dev": "deno run -A --watch main.ts",
         "edgedb:start": "edgedb instance start -I universalmusic",
-        "edgedb:stop": "edgedb instance stop -I universalmusic"
+        "edgedb:stop": "edgedb instance stop -I universalmusic",
+        "edgedb:generate": "deno run -A --unstable https://deno.land/x/edgedb/generate.ts edgeql-js --target deno --output-dir libs/edgeql/db/",
+        "edgedb:migration:create": "edgedb migration create",
+        "edgedb:migrate": "edgedb migrate"
     },
     "compilerOptions": {
         "lib": ["deno.window", "webworker", "esnext"]
